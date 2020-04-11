@@ -15,6 +15,12 @@ def index():
     # Render the template. See javascript files for functionality
     return render_template("index.html")
 
+@app.route("/transitions")
+def index2():
+
+    # Render the template. See javascript files for functionality
+    return render_template("index_transitions.html")
+
 if __name__ == '__main__':
 
     app.run(debug=True)
