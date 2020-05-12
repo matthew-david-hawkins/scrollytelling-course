@@ -33,7 +33,7 @@
   stroke-width: 1em;
 }
 
-#badge{
+.badge{
     fill:rgb(229, 229, 229);
     stroke:white;
     stroke-width: 0.25em;
@@ -41,12 +41,12 @@
     transform: rotate(120deg);
 }
 
-#svg #bar {
+.lesson-ring .bar {
   stroke: #FF9F1E;
   stroke-dashoffset: 565px;
 }
 
-#cont {
+.lesson-ring-cont {
   display: block;
   height: 200px;
   width: 200px;
@@ -54,7 +54,7 @@
   border-radius: 100%;
   position: relative;
 }
-#ring-label {
+.ring-label {
   font-family: 'fredoka';
   font-size: 2em;
 }
@@ -99,57 +99,91 @@ input {
 <body>
     <h1>SVG Circle Progress</h1>
     <h2>Based off of CSS3 circle progress bars</h2>
-    
-    <div id="cont" data-pct="100" style="text-align:center">
-      <svg id="svg" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <g >
+    <label for="ring-percent">Dummy</label>
+    <input class="ring-percent" name="percent">
+    <!-- Ring 1 -->
+    <div  style="text-align:center">
+      <div class="lesson-ring-cont" lesson-index="0" data-pct="100">
+        <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <g class="ring-overlay">
             <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(28, 176, 246)"></circle>
-            <text x="83" y="110" id="ring-label">#1</text>
-        </g>
-        <g class="ring">
-            <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
-        </g>
-        <g class="ring">
-            <circle id="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
-        </g>
-        <g  class="ring-clip">
-            <circle r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" id="ring-clip-circle"></circle>
-        </g>
-        <g>
-            <circle id="badge" r="25" cx="100" cy="12.5"></circle>
-        </g>
-        <g id="ring-overlay">
+            <text x="57" y="110" class="ring-label">Start!</text>
+            <g class="ring">
+              <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g class="ring">
+                <circle class="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g  class="ring-clip">
+              <circle class="ring-clip-circle" r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" ></circle>
+            </g>
+            <circle class="badge" r="25" cx="100" cy="12.5"></circle>
             <circle r="105" cx="100" cy="100" fill="white" opacity="1%" z-index="999"></circle>
-        </g>
-      </svg>
-      <h3>Intro</h3>
+          </g>
+        </svg>
+      </div>
+      <h3>Introduction</h3>
     </div>
-    <label for="percent">Type a percent!</label>
-    <input id="percent" name="percent">
+
+    <!-- Ring 2 -->
+    <div  style="text-align:center" style="opacity:50%">
+      <div class="lesson-ring-cont" lesson-index="1" data-pct="100">
+        <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <g class="ring-overlay">
+            <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(229, 229, 229)"></circle>
+            <text x="83" y="110" class="ring-label">#1</text>
+            <g class="ring">
+              <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g class="ring">
+                <circle class="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g  class="ring-clip">
+              <circle class="ring-clip-circle" r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" ></circle>
+            </g>
+            <circle class="badge" r="25" cx="100" cy="12.5"></circle>
+            <circle r="110" cx="100" cy="100" fill="white" opacity="50%" z-index="999"></circle>
+          </g>
+        </svg>
+      </div>
+      <h3>What Is Scrollytelling?</h3>
+    </div>
+    
+
+    <!-- Lesson 4 -->
+
+
+    <!-- Lesson 5 -->
+
+
+    <!-- Lesson 6 -->
+
+
+    <!-- Lesson 7 -->
+
+
+    <!-- Lesson 1 -->
 </body>
 
 <script>
 
-var $ringCenter = $('.ring-center');
-var $ringLabel = $('#ring-label');
-
-
-$("#ring-overlay").mouseover(svgHover);
-
-$("#ring-overlay").mouseout(svgHoverReset);
-
-$("#ring-overlay").click(svgClick);
+$(".ring-overlay").mouseover(svgHover);
+$(".ring-overlay").mouseout(svgHoverReset);
+$(".ring-overlay").click(svgClick);
 
 function svgHover(){
-    $ringLabel.css('animation','shake 0.5s');
-    $ringLabel.css('animation-iteration-count','infinite');
-    $ringcenter.css('animation-iteration-count','1');
+  var $ringLabel = $('.ring-label', this)
+  var $ringCenter = $('.ring-center', this)
+  $ringLabel.css('animation','shake 0.5s');
+  $ringLabel.css('animation-iteration-count','infinite');
+  $ringCenter.css('animation-iteration-count','1');
 }
 
 function svgHoverReset(){
-    $ringLabel.css('animation-play-state','paused');
-    $ringCenter.css('animation-iteration-count','infinite');
-
+  var $ringLabel = $('.ring-label', this)
+  var $ringCenter = $('.ring-center', this)
+  $ringLabel.css('animation-play-state','paused');
+  $ringCenter.css('animation-iteration-count','infinite');
 }
 
 function svgClick(){
@@ -157,7 +191,7 @@ function svgClick(){
 }
 
 
-var $ringClip = $('#ring-clip-circle');
+var $ringClip = $('.ring-clip-circle');
 var r = $ringClip.attr('r');
 var c = Math.PI*(r*2);
 var pct = 0.5*c;
@@ -165,14 +199,14 @@ var pct = 0.5*c;
 $ringClip.css({ strokeDashoffset: pct})
 $ringClip.css({ strokeDasharray: c})
 
-
-$('#percent').on('change', function(){
+$('.ring-percent').on('change', function(){
   var val = parseInt($(this).val());
-  var $circle = $('#svg #bar');
+  var $circle = $('.lesson-ring .bar');
   
   if (isNaN(val)) {
    val = 0; 
   }
+
   else{
     var r = $circle.attr('r');
     var c = Math.PI*(r*2);
@@ -182,7 +216,7 @@ $('#percent').on('change', function(){
     
     var pct = ((100-val)/100)*c;
 
-    var $ringClip = $('#ring-clip-circle');
+    var $ringClip = $('.ring-clip-circle');
     var deg = val*3.6;
     console.log(deg)
 
@@ -191,10 +225,10 @@ $('#percent').on('change', function(){
     $ringClip.css('transform','rotate('+deg+'deg)');   
     $circle.css({ strokeDashoffset: pct});
     
-    $('#cont').attr('data-pct',val);
+    // $('#cont').attr('data-pct',val);
 
     if (val == 100){
-        var $badge = $('#badge');
+        var $badge = $('.badge');
         $badge.css('transition','fill 1s linear');   
         $badge.css('fill','rgb(28, 176, 246)');   
 
