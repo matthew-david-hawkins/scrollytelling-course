@@ -102,8 +102,8 @@ input {
     <label for="ring-percent">Dummy</label>
     <input class="ring-percent" name="percent">
     <!-- Ring 1 -->
-    <div  style="text-align:center">
-      <div class="lesson-ring-cont" lesson-index="0" data-pct="100">
+    <div class="lesson-widget" style="text-align:center">
+      <div class="lesson-ring-cont" lesson-index="0" data-pct="0">
         <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <g class="ring-overlay">
             <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(28, 176, 246)"></circle>
@@ -123,6 +123,7 @@ input {
         </svg>
       </div>
       <h3>Introduction</h3>
+      <p><a class="video-lesson" href="" target="_blank">Video Lesson</a> | <a href="" target="_blank">Quiz</a> | <a href="" target="_blank">Coding</a></p>
     </div>
 
     <!-- Ring 2 -->
@@ -170,6 +171,7 @@ input {
 $(".ring-overlay").mouseover(svgHover);
 $(".ring-overlay").mouseout(svgHoverReset);
 $(".ring-overlay").click(svgClick);
+$(".video-lesson").click(videoClick);
 
 function svgHover(){
   var $ringLabel = $('.ring-label', this)
@@ -187,17 +189,68 @@ function svgHoverReset(){
 }
 
 function svgClick(){
-    window.open('https://www.thrum.engineering/new-page');
+  window.open('https://www.thrum.engineering/new-page');
+}
+
+function videoClick(){
+  var $widget = $(this).closest(".lesson-widget").get(0);
+  var $cont = $('.lesson-ring-cont', $widget).get(0);
+  // Increase ring value by 33.5
+  var val = parseInt($($cont).attr("data-pct"));
+  var $circle = $('.lesson-ring .bar', $($cont));
+  val += 33.5;
+  // Update the progress value
+  $($cont).attr("data-pct", Math.ceil(val));
+  
+  function updateRing (){
+
+    console.log(val);
+    var r = $circle.attr('r');
+    var c = Math.PI*(r*2);
+   
+    if (val < 0) { val = 0;}
+    if (val > 100) { val = 100;}
+    
+    var pct = ((100-val)/100)*c;
+
+    var $ringClip = $('.ring-clip-circle', $($cont));
+    var deg = val*3.6;
+    console.log(deg)
+
+    $ringClip.css('transform-origin','center');   
+    $ringClip.css('transition','transform 1s');   
+    $ringClip.css('transform','rotate('+deg+'deg)');   
+    $circle.css({ strokeDashoffset: pct});
+    
+    if (val == 100){
+        var $badge = $('.badge', $($cont));
+        $badge.css('transition','fill 1s linear');   
+        $badge.css('fill','rgb(28, 176, 246)');   
+
+    }
+  }
+
+  function checkPageFocus() {
+
+    if (document.hasFocus()) {
+      //log.textContent = 'This document has the focus.';
+      updateRing();
+      clearInterval(myInterval);
+    }
+    else {
+      //log.textContent = 'This document does not have the focus.';
+    }
+  }
+
+  // Check page focus every 300 milliseconds
+  var myInterval = setInterval(checkPageFocus, 300);
+
 }
 
 
-var $ringClip = $('.ring-clip-circle');
-var r = $ringClip.attr('r');
-var c = Math.PI*(r*2);
-var pct = 0.5*c;
 
-$ringClip.css({ strokeDashoffset: pct})
-$ringClip.css({ strokeDasharray: c})
+
+
 
 $('.ring-percent').on('change', function(){
   var val = parseInt($(this).val());
@@ -225,8 +278,6 @@ $('.ring-percent').on('change', function(){
     $ringClip.css('transform','rotate('+deg+'deg)');   
     $circle.css({ strokeDashoffset: pct});
     
-    // $('#cont').attr('data-pct',val);
-
     if (val == 100){
         var $badge = $('.badge');
         $badge.css('transition','fill 1s linear');   
@@ -236,6 +287,16 @@ $('.ring-percent').on('change', function(){
 
   }
 });
+
+// Properly size the cap of the progress ring
+var $ringClips = $('.ring-clip-circle');
+var r = $ringClips.attr('r');
+var c = Math.PI*(r*2);
+var pct = 0.5*c;
+
+$ringClips.css({ strokeDashoffset: pct});
+$ringClips.css({ strokeDasharray: c});
+
 </script>
 
 </html>
