@@ -120,7 +120,7 @@ input {
         </svg>
       </div>
       <h2>Introduction</h2>
-      <p><a class="video-lesson" href="other.html" target="_blank">Learn</a> | <a class="quiz" href="" target="_blank">Quiz</a> | <a class="code" href="" target="_blank">Code!</a></p>
+      <p><a class="video-lesson" href="" target="_blank">Learn</a> | <a class="quiz" href="" target="_blank">Quiz</a> | <a class="code" href="" target="_blank">Code!</a></p>
       <p><a class="notes" href="" target="_blank">Notes</a></p>
     </div>
 
@@ -325,11 +325,18 @@ function trackProgress($cont){
     }
   }
 
-  function checkPageFocus() {
+  function checkPageFocus($cont, val) {
+    console.log("checking focus")
     if (document.hasFocus()) {
       //log.textContent = 'This document has the focus.';
-      updateRing($cont, val);
-      clearInterval(myInterval);
+      //updateRing($cont, val);
+      //clearInterval(myInterval);
+      console.log("yes")
+    }
+    else {
+      //log.textContent = 'This document does not have the focus.';
+      console.log("no")
+
     }
   }
 
@@ -343,7 +350,7 @@ function trackProgress($cont){
 
   // Animate the ring when the user returns to the page
   // Check page focus every 300 milliseconds
-  myInterval = setInterval(checkPageFocus, 300);
+  setInterval(checkPageFocus($cont, val), 1000);
 }
 
 // Properly size the cap of the progress ring
