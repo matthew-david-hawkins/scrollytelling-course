@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Scrollytelling</title>
+  <style>
+      @font-face {
+            font-family: 'fredoka';
+            src: url('fonts/FredokaOne-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+.ring{
+    transform-origin: center;
+    transform: rotate(30deg);
+
+}
+.ring-clip{
+    transform-origin: center;
+    /* Input Position = Desired Position - 90 - 7.2 */
+    transform: rotate(22.8deg); 
+    stroke-width: 0.3em;
+    stroke:white;
+    transition: transform 1s;
+}
+
+.ring circle {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s;
+  stroke: rgb(229, 229, 229);
+  stroke-width: 1em;
+}
+
+.badge{
+    fill:rgb(229, 229, 229);
+    stroke:white;
+    stroke-width: 0.25em;
+    transform-origin: center;
+    transform: rotate(120deg);
+}
+
+.lesson-ring .bar {
+  stroke: #FF9F1E;
+  stroke-dashoffset: 565px;
+}
+
+.thumbnail {
+  float: left;
+  margin: 50px;
+}
+
+.lesson-widget{
+  width: 200px;
+  float: left;
+}
+
+.lesson-ring-cont {
+  display: block;
+  height: 200px;
+  width: 200px;
+  margin: 2em auto;
+  border-radius: 100%;
+  position: relative;
+}
+
+.ring-label {
+  font-family: 'fredoka';
+  font-size: 2em;
+}
+
+input {
+  color: #000;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); transform-origin: center;}
+  10% { transform: rotate(2deg); transform-origin: center;}
+  20% { transform: rotate(0deg); transform-origin: center;}
+  30% { transform: rotate(-2deg); transform-origin: center;}
+  40% { transform: rotate(0deg); transform-origin: center;}
+  50% { transform: rotate(0deg); transform-origin: center;}
+  60% { transform: rotate(0deg); transform-origin: center;}
+  70% { transform: rotate(0deg); transform-origin: center;}
+  80% { transform: rotate(0deg); transform-origin: center;}
+  90% { transform: rotate(0deg); transform-origin: center;}
+  100% { transform: rotate(0deg); transform-origin: center;}
+}
+
+.ring-center[active="yes"] {
+  opacity:100%;
+  animation-timing-function: linear;
+  animation: glow 5s;
+  animation-iteration-count: infinite;
+}
+
+.ring-center[active="no"] {
+  opacity:25%;
+}
+
+.ring-center[active="finished"]{
+  fill:white;
+  transition: fill 1s;
+}
+
+
+
+@keyframes glow {
+  0% { opacity:100%;}
+  50% { opacity:50%;}
+  100% { opacity:100%;}
+}
+
+
+/* Make things perty */
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div style="height:300px">
+      <div class="thumbnail"><img src="Khaled.jpg" height="200px" width ="auto" id="imgV2"></div>
+
+      <!-- Ring 1 -->
+      <div class="lesson-widget" style="text-align:center">
+        <div class="lesson-ring-cont" lesson-index="0" data-pct="0" vid="no" quiz="no" code="no">
+          <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+            <g class="ring-overlay">
+              <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(28, 176, 246)" active="yes"></circle>
+              <text x="61" y="110" class="ring-label">Start!</text>
+              <g class="ring">
+                <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+              </g>
+              <g class="ring">
+                  <circle class="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+              </g>
+              <g  class="ring-clip">
+                <circle class="ring-clip-circle" r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" ></circle>
+              </g>
+              <circle class="badge" r="25" cx="100" cy="12.5"></circle>
+              <circle r="105" cx="100" cy="100" fill="white" opacity="1%" z-index="999"  id="lesson0-svg"></circle>
+            </g>
+          </svg>
+        </div>
+        <h2 style="line-height:0px;margin:0px;">Introduction</h2>
+        <p><a class="video-lesson" id="lesson0-vid" href="https://vimeo.com/409278572" target="_blank">Learn</a> | <a class="quiz" id="lesson0-quiz" href="https://thrum.engineering/s/Quiz-0.pdf" target="_blank">Quiz</a> | <a class="code" id="lesson0-code" href="https://www.w3schools.com/code/tryit.asp?filename=GEUOC8CB9BI4" target="_blank">Code!</a></p>
+        <p><a class="notes" href="https://thrum.engineering/s/Course-Description.pdf" target="_blank">Notes</a></p>
+        <br>
+      </div>
+    </div>
+    
+
+    <!-- Ring 2 -->
+    <div class="lesson-widget" style="text-align:center">
+      <div class="lesson-ring-cont" lesson-index="0" data-pct="0" vid="no" quiz="no" code="no">
+        <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+          <g class="ring-overlay">
+            <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(28, 176, 246)" active="no" ></circle>
+            <text x="80" y="110" class="ring-label">#1</text>
+            <g class="ring">
+              <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g class="ring">
+                <circle class="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g  class="ring-clip">
+              <circle class="ring-clip-circle" r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" ></circle>
+            </g>
+            <circle class="badge" r="25" cx="100" cy="12.5"></circle>
+            <circle r="105" cx="100" cy="100" fill="white" opacity="1%" z-index="999" id="lesson1-svg"></circle>
+          </g>
+        </svg>
+      </div>
+      <h2 style="line-height:0px;margin:0px;">What is Scrollytelling?</h2>
+      <p><a class="video-lesson" id="lesson1-vid" href="https://vimeo.com/409278671" target="_blank">Learn</a> | <a class="quiz" id="lesson1-quiz" href="https://thrum.engineering/s/Quiz-1.pdf" target="_blank">Quiz</a> | <a class="code" id="lesson1-code" href="https://www.w3schools.com/code/tryit.asp?filename=GEUOC8CB9BI4" target="_blank">Code!</a></p>
+      <p><a class="notes" href="https://thrum.engineering/s/Notes-What-is-Scrollytelling.pdf" target="_blank">Notes</a></p>
+      <br>
+    </div>
+
+    <!-- Ring 3 -->
+    <div class="lesson-widget" style="text-align:center">
+      <div class="lesson-ring-cont" lesson-index="0" data-pct="0" vid="no" quiz="no" code="no">
+        <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+          <g class="ring-overlay">
+            <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(28, 176, 246)" active="no" ></circle>
+            <text x="78" y="110" class="ring-label">#2</text>
+            <g class="ring">
+              <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g class="ring">
+                <circle class="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g  class="ring-clip">
+              <circle class="ring-clip-circle" r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" ></circle>
+            </g>
+            <circle class="badge" r="25" cx="100" cy="12.5"></circle>
+            <circle r="105" cx="100" cy="100" fill="white" opacity="1%" z-index="999" id="lesson2-svg"></circle>
+          </g>
+        </svg>
+      </div>
+      <h2 style="line-height:0px;margin:0px;">Position: sticky</h2>
+      <p><a class="video-lesson" id="lesson2-vid" href="https://vimeo.com/409282210" target="_blank">Learn</a> | <a class="quiz" id="lesson2-quiz" href="https://thrum.engineering/s/Quiz-2.pdf" target="_blank">Quiz</a> | <a class="code" id="lesson2-code" href="https://www.w3schools.com/code/tryit.asp?filename=GEUOC8CB9BI4" target="_blank">Code!</a></p>
+      <p><a class="notes" href="https://thrum.engineering/s/Notes-Position-sticky.pdf" target="_blank">Notes</a></p>
+      <br>
+    </div>
+
+    <!-- Ring 4 -->
+    <div class="lesson-widget" style="text-align:center">
+      <div class="lesson-ring-cont" lesson-index="0" data-pct="0" vid="no" quiz="no" code="no">
+        <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+          <g class="ring-overlay">
+            <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(28, 176, 246)" active="no" ></circle>
+            <text x="78" y="110" class="ring-label">#3</text>
+            <g class="ring">
+              <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g class="ring">
+                <circle class="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g  class="ring-clip">
+              <circle class="ring-clip-circle" r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" ></circle>
+            </g>
+            <circle class="badge" r="25" cx="100" cy="12.5"></circle>
+            <circle r="105" cx="100" cy="100" fill="white" opacity="1%" z-index="999" id="lesson3-svg"></circle>
+          </g>
+        </svg>
+      </div>
+      <h2 style="line-height:0px;margin:0px;">Scrollama setup()</h2>
+      <p><a class="video-lesson" id="lesson3-vid" href="https://vimeo.com/412710611" target="_blank">Learn</a> | <a class="quiz" id="lesson3-quiz" href="https://thrum.engineering/s/Quiz-3.pdf" target="_blank">Quiz</a> | <a class="code" id="lesson3-code" href="https://www.w3schools.com/code/tryit.asp?filename=GEUOC8CB9BI4" target="_blank">Code!</a></p>
+      <p><a class="notes" href="https://thrum.engineering/s/Notes-Scrollama-Setup.pdf" target="_blank">Notes</a></p>
+      <br>
+    </div>
+
+    <!-- Ring 5 -->
+    <div class="lesson-widget" style="text-align:center">
+      <div class="lesson-ring-cont" lesson-index="0" data-pct="0" vid="no" quiz="no" code="no">
+        <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+          <g class="ring-overlay">
+            <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(28, 176, 246)" active="no" ></circle>
+            <text x="78" y="110" class="ring-label">#4</text>
+            <g class="ring">
+              <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g class="ring">
+                <circle class="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g  class="ring-clip">
+              <circle class="ring-clip-circle" r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" ></circle>
+            </g>
+            <circle class="badge" r="25" cx="100" cy="12.5"></circle>
+            <circle r="105" cx="100" cy="100" fill="white" opacity="1%" z-index="999" id="lesson4-svg"></circle>
+          </g>
+        </svg>
+      </div>
+      <h2 style="line-height:0px;margin:0px;">Coding for Scrollytelling</h2>
+      <p><a class="video-lesson" id="lesson4-vid" href="https://vimeo.com/412711749" target="_blank">Learn</a> | <a class="quiz" id="lesson4-quiz" href="https://thrum.engineering/s/Quiz-4.pdf" target="_blank">Quiz</a> | <a class="code" id="lesson4-code" href="https://www.w3schools.com/code/tryit.asp?filename=GEUOC8CB9BI4" target="_blank">Code!</a></p>
+      <p><a class="notes" href="https://thrum.engineering/s/Course-Description.pdf" target="_blank">Notes</a></p>
+      <br>
+    </div>
+
+    <!-- Ring 6 -->
+    <div class="lesson-widget" style="text-align:center">
+      <div class="lesson-ring-cont" lesson-index="0" data-pct="0" vid="no" quiz="no" code="no">
+        <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+          <g class="ring-overlay">
+            <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(28, 176, 246)" active="no" ></circle>
+            <text x="78" y="110" class="ring-label">#5</text>
+            <g class="ring">
+              <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g class="ring">
+                <circle class="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g  class="ring-clip">
+              <circle class="ring-clip-circle" r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" ></circle>
+            </g>
+            <circle class="badge" r="25" cx="100" cy="12.5"></circle>
+            <circle r="105" cx="100" cy="100" fill="white" opacity="1%" z-index="999" id="lesson5-svg"></circle>
+          </g>
+        </svg>
+      </div>
+      <h2 style="line-height:0px;margin:0px;">Bringing it All Together</h2>
+      <p><a class="video-lesson" id="lesson5-vid" href="https://vimeo.com/412712607" target="_blank">Learn</a> | <a class="quiz" id="lesson5-quiz" href="https://thrum.engineering/s/Quiz-5.pdf" target="_blank">Quiz</a> | <a class="code" id="lesson5-code" href="https://www.w3schools.com/code/tryit.asp?filename=GEUOC8CB9BI4" target="_blank">Code!</a></p>
+      <p><a class="notes" href="https://thrum.engineering/s/Course-Description.pdf" target="_blank">Notes</a></p>
+      <br>
+    </div>
+
+    <!-- Ring 7 -->
+    <div class="lesson-widget" style="text-align:center;opacity:50%">
+      <div class="lesson-ring-cont" lesson-index="0" data-pct="0" vid="no" quiz="no" code="no">
+        <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+          <g class="ring-overlay">
+            <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(28, 176, 246)" active="no" ></circle>
+            <text x="78" y="110" class="ring-label">#6</text>
+            <g class="ring">
+              <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g class="ring">
+                <circle class="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g  class="ring-clip">
+              <circle class="ring-clip-circle" r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" ></circle>
+            </g>
+            <circle class="badge" r="25" cx="100" cy="12.5"></circle>
+            <path d="M7.715,4.929v3.857c0,0.179-0.063,0.331-0.188,0.456S7.25,9.429,7.071,9.429H0.644c-0.179,0-0.331-0.063-0.456-0.188S0,8.964,0,8.786V4.929c0-0.179,0.063-0.33,0.188-0.456c0.125-0.125,0.277-0.188,0.456-0.188h0.214V3c0-0.821,0.295-1.527,0.884-2.116C2.331,0.295,3.036,0,3.857,0s1.526,0.295,2.116,0.884C6.563,1.473,6.857,2.179,6.857,3v1.286h0.214c0.179,0,0.331,0.063,0.456,0.188C7.652,4.599,7.715,4.75,7.715,4.929z M2.144,4.286h3.428V3c0-0.473-0.167-0.877-0.502-1.212S4.33,1.286,3.857,1.286c-0.474,0-0.877,0.167-1.212,0.502S2.144,2.527,2.144,3V4.286z M4.715,6c0-0.236-0.084-0.438-0.251-0.606c-0.168-0.167-0.37-0.251-0.606-0.251S3.419,5.227,3.251,5.394C3.084,5.562,3,5.764,3,6c0,0.166,0.043,0.315,0.128,0.449c0.084,0.134,0.198,0.239,0.341,0.315L3.007,8.297C2.984,8.364,2.996,8.427,3.04,8.484c0.045,0.058,0.103,0.087,0.175,0.087H4.5c0.071,0,0.13-0.029,0.175-0.087C4.719,8.427,4.73,8.364,4.708,8.297L4.246,6.764c0.143-0.076,0.256-0.181,0.341-0.315S4.715,6.166,4.715,6z"/>
+            <circle r="105" cx="100" cy="100" fill="white" opacity="1%" z-index="999" id="lesson6-svg"></circle>
+          </g>
+        </svg>
+      </div>
+      <h2 style="line-height:0px;margin:0px;">Using Transitions</h2>
+      <p><a class="video-lesson" id="lesson6-vid" href="https://thrum.engineering/tutorials/scrollytelling" target="_blank">Learn</a> | <a class="quiz" id="lesson6-quiz" href="https://thrum.engineering/tutorials/scrollytelling" target="_blank">Quiz</a> | <a class="code" id="lesson6-code" href="https://thrum.engineering/tutorials/scrollytelling" target="_blank">Code!</a></p>
+      <p><a class="notes" href="https://thrum.engineering/tutorials/scrollytelling" target="_blank">Notes</a></p>
+      <br>
+    </div>
+
+    <!-- Ring 8 -->
+    <div class="lesson-widget" style="text-align:center;opacity:50%" >
+      <div class="lesson-ring-cont" lesson-index="0" data-pct="0" vid="no" quiz="no" code="no">
+        <svg class="lesson-ring" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+          <g class="ring-overlay">
+            <circle class="ring-center" r="60" cx="100" cy="100" fill="rgb(28, 176, 246)" active="no" ></circle>
+            <text x="63" y="110" class="ring-label">Final</text>
+            <g class="ring">
+              <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g class="ring">
+                <circle class="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            </g>
+            <g  class="ring-clip">
+              <circle class="ring-clip-circle" r="12.5" cx="190" cy="100" fill="transparent" stroke-dasharray="20" ></circle>
+            </g>
+            <circle class="badge" r="25" cx="100" cy="12.5"></circle>
+            <path d="M7.715,4.929v3.857c0,0.179-0.063,0.331-0.188,0.456S7.25,9.429,7.071,9.429H0.644c-0.179,0-0.331-0.063-0.456-0.188S0,8.964,0,8.786V4.929c0-0.179,0.063-0.33,0.188-0.456c0.125-0.125,0.277-0.188,0.456-0.188h0.214V3c0-0.821,0.295-1.527,0.884-2.116C2.331,0.295,3.036,0,3.857,0s1.526,0.295,2.116,0.884C6.563,1.473,6.857,2.179,6.857,3v1.286h0.214c0.179,0,0.331,0.063,0.456,0.188C7.652,4.599,7.715,4.75,7.715,4.929z M2.144,4.286h3.428V3c0-0.473-0.167-0.877-0.502-1.212S4.33,1.286,3.857,1.286c-0.474,0-0.877,0.167-1.212,0.502S2.144,2.527,2.144,3V4.286z M4.715,6c0-0.236-0.084-0.438-0.251-0.606c-0.168-0.167-0.37-0.251-0.606-0.251S3.419,5.227,3.251,5.394C3.084,5.562,3,5.764,3,6c0,0.166,0.043,0.315,0.128,0.449c0.084,0.134,0.198,0.239,0.341,0.315L3.007,8.297C2.984,8.364,2.996,8.427,3.04,8.484c0.045,0.058,0.103,0.087,0.175,0.087H4.5c0.071,0,0.13-0.029,0.175-0.087C4.719,8.427,4.73,8.364,4.708,8.297L4.246,6.764c0.143-0.076,0.256-0.181,0.341-0.315S4.715,6.166,4.715,6z"/>
+            <circle r="105" cx="100" cy="100" fill="white" opacity="1%" z-index="999" id="lesson7-svg"></circle>
+          </g>
+        </svg>
+      </div>
+      <h2 style="line-height:0px;margin:0px;">Coding Project</h2>
+      <p><a class="video-lesson" id="lesson7-vid" href="https://thrum.engineering/tutorials/scrollytelling" target="_blank">Learn</a> | <a class="quiz" id="lesson7-quiz" href="https://thrum.engineering/tutorials/scrollytelling" target="_blank">Quiz</a> | <a class="code" id="lesson7-code" href="https://thrum.engineering/tutorials/scrollytelling" target="_blank">Code!</a></p>
+      <p><a class="notes" href="https://thrum.engineering/tutorials/scrollytelling" target="_blank">Notes</a></p>
+    </div>
+
+</body>
+
+<script>
+
+$(".ring-overlay").mouseover(svgHover);
+$(".ring-overlay").mouseout(svgHoverReset);
+$(".ring-overlay").click(svgClick);
+$(".video-lesson").click(videoClick);
+$(".quiz").click(quizClick);
+$(".code").click(codeClick);
+
+
+function svgHover(){
+  var $ringLabel = $('.ring-label', this)
+  var $ringCenter = $('.ring-center', this)
+  $ringLabel.css('animation','shake 0.5s');
+  $ringLabel.css('animation-iteration-count','infinite');
+  $ringCenter.css('animation-iteration-count','1');
+}
+
+function svgHoverReset(){
+  var $ringLabel = $('.ring-label', this)
+  var $ringCenter = $('.ring-center', this)
+  $ringLabel.css('animation-play-state','paused');
+  $ringCenter.css('animation-iteration-count','infinite');
+}
+
+function svgClick(){
+  var $widget = $(this).closest(".lesson-widget").get(0);
+  var $cont = $('.lesson-ring-cont', $widget).get(0);
+
+  // Check which resources have been clicked
+  var video = $($cont).attr("vid");
+  var quiz = $($cont).attr("quiz");
+  var code = $($cont).attr("code");
+
+  if (video == "no"){
+    // Update the status
+    // Open the approprate video in a new tab
+    var link = $(".video-lesson", $widget).attr('href')
+    console.log(link);
+    window.open(link)
+    $($cont).attr("vid", "yes");
+    trackProgress($cont);
+  } 
+
+  else if (quiz == "no"){
+    // Update the status
+    var link = $(".quiz", $widget).attr('href')
+    console.log(link);
+    window.open(link)
+    $($cont).attr("quiz", "yes");
+    trackProgress($cont);
+  } 
+
+  else if (code == "no"){
+    // Update the status
+    var link = $(".code", $widget).attr('href')
+    console.log(link);
+    window.open(link)
+    $($cont).attr("code", "yes");
+    trackProgress($cont);
+  }
+  
+}
+
+function videoClick(){
+  var $widget = $(this).closest(".lesson-widget").get(0);
+  var $cont = $('.lesson-ring-cont', $widget).get(0);
+
+  // Check if the video has been clicked
+  var video = $($cont).attr("vid");
+
+  if (video == "no"){
+    // Update the status
+    $($cont).attr("vid", "yes");
+    trackProgress($cont);
+  } 
+
+}
+
+function quizClick(){
+  var $widget = $(this).closest(".lesson-widget").get(0);
+  var $cont = $('.lesson-ring-cont', $widget).get(0);
+
+  // Check if the video has been clicked
+  var quiz = $($cont).attr("quiz");
+
+  if (quiz== "no"){
+    // Update the status
+    $($cont).attr("quiz", "yes");
+    trackProgress($cont);
+  } 
+
+}
+
+function codeClick(){
+  var $widget = $(this).closest(".lesson-widget").get(0);
+  var $cont = $('.lesson-ring-cont', $widget).get(0);
+
+  // Check if the video has been clicked
+  var code = $($cont).attr("code");
+
+  if (code == "no"){
+    // Update the status
+    $($cont).attr("code", "yes");
+    trackProgress($cont);
+  } 
+
+}
+
+function trackProgress($cont){
+
+  function updateRing ($cont, val){
+
+    var $circle = $('.lesson-ring .bar', $($cont));
+
+    console.log(val);
+    var r = $circle.attr('r');
+    var c = Math.PI*(r*2);
+
+    if (val < 0) { val = 0;}
+    if (val > 100) { val = 100;}
+
+    var pct = ((100-val)/100)*c;
+
+    var $ringClip = $('.ring-clip-circle', $($cont));
+    var deg = val*3.6;
+    console.log(deg)
+
+    $ringClip.css('transform-origin','center');   
+    $ringClip.css('transition','transform 1s');   
+    $ringClip.css('transform','rotate('+deg+'deg)');   
+    $circle.css({ strokeDashoffset: pct});
+
+    if (val == 100){
+        var $badge = $('.badge', $($cont));
+        $badge.css('transition','fill 1s linear');   
+        $badge.css('fill','rgb(28, 176, 246)');   
+
+    }
+  }
+
+  function checkPageFocus() {
+    if (document.hasFocus()) {
+      //log.textContent = 'This document has the focus.';
+      updateRing($cont, val);
+      activeLesson();
+      finishedLesson();
+      clearInterval(myInterval);
+    }
+  }
+
+  // Increase ring value by 33.5
+  var val = parseInt($($cont).attr("data-pct"));
+  var $circle = $('.lesson-ring .bar', $($cont));
+  
+  val += 33.5;
+  // Update the progress value
+  $($cont).attr("data-pct", Math.ceil(val));
+
+  // Animate the ring when the user returns to the page
+  // Check page focus every 300 milliseconds
+  myInterval = setInterval(checkPageFocus, 300);
+}
+
+// Properly size the cap of the progress ring
+var $ringClips = $('.ring-clip-circle');
+var r = $ringClips.attr('r');
+var c = Math.PI*(r*2);
+var pct = 0.5*c;
+
+$ringClips.css({ strokeDashoffset: pct});
+$ringClips.css({ strokeDasharray: c});
+
+// Glow the first lesson that doesn't have value of 100%
+function activeLesson(){
+  var $activeLesson = $(".lesson-ring-cont").filter(function() {
+      return  parseInt($(this).attr("data-pct")) < 100;
+  });
+
+  var $ringCenter = $('.ring-center', $($activeLesson.get(0)));
+  ($ringCenter).attr("active", "yes");
+
+  console.log($ringCenter)
+}
+
+function finishedLesson(){
+  var $finishedLessons = $(".lesson-ring-cont").filter(function() {
+      return  parseInt($(this).attr("data-pct")) == 102;
+  });
+
+  var $ringCenter = $('.ring-center', $finishedLessons);
+  ($ringCenter).attr("active", "finished");
+}
+
+
+</script>
+
+</html>
